@@ -7,11 +7,28 @@ WORKDIR /home/developer
 
 # Apt
 RUN apt-get update
-RUN apt-get install -y curl git unzip xz-utils zip libglu1-mesa openjdk-8-jdk wget
-RUN apt-get install clang cmake git ninja-build pkg-config libgtk-3-dev liblzma-dev libstdc++-12-dev
+RUN apt-get install -y \
+    curl            \
+    git             \
+    unzip           \
+    xz-utils        \
+    zip             \
+    libglu1-mesa    \ 
+    openjdk-8-jdk   \  
+    wget
+
+RUN apt-get install -y \
+    clang               \
+    cmake               \
+    git                 \
+    ninja-build         \
+    pkg-config          \
+    libgtk-3-dev        \
+    liblzma-dev         \
+    libstdc++-12-dev
 
 # Set up the Android SDK
-RUN mkdir -p Android/sdk
+RUN mkdir -p /home/developer/Android/sdk
 ENV ANDROID_SDK_ROOT /home/developer/Android/sdk
 RUN mkdir -p .android && touch .android/repositories.config
 RUN wget -O sdk-tools.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
@@ -25,5 +42,3 @@ ENV PATH "$PATH:/home/developer/Android/sdk/platform-tools"
 RUN git clone https://github.com/flutter/flutter.git
 ENV PATH "$PATH:/home/developer/flutter/bin"
 
-# Test flutter
-RUN flutter doctor
