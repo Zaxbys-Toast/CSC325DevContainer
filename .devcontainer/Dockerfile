@@ -2,30 +2,27 @@ FROM mcr.microsoft.com/devcontainers/base:ubuntu
 
 ARG USERNAME=vscode
 ARG USER_UID=1000
-ARG USER_GID=$(USER_UID)
+ARG USER_GID=$USER_UID
 WORKDIR /home/developer
 
 # Apt
 RUN apt-get update
 RUN apt-get install -y \
-    curl            \
-    git             \
-    unzip           \
-    xz-utils        \
-    zip             \
-    libglu1-mesa    \ 
-    openjdk-8-jdk   \  
-    wget
-
-RUN apt-get install -y \
-    clang               \
-    cmake               \
-    git                 \
-    ninja-build         \
-    pkg-config          \
-    libgtk-3-dev        \
-    liblzma-dev         \
-    libstdc++-12-dev
+curl \
+git \
+unzip \
+xz-utils \
+zip \
+libglu1-mesa \
+openjdk-8-jdk \
+wget \
+clang \
+cmake \
+ninja-build \
+pkg-config \
+libgtk-3-dev \
+liblzma-dev \
+libstdc++-12-dev
 
 # Set up the Android SDK
 RUN mkdir -p /home/developer/Android/sdk/
@@ -44,3 +41,4 @@ ENV PATH "$PATH:/home/developer/Android/sdk/platform-tools"
 RUN git clone https://github.com/flutter/flutter.git /home/developer/flutter/
 ENV PATH "$PATH:/home/developer/flutter/bin"
 
+#Maybe run flutter doctor and flutter -d web-application

@@ -12,10 +12,10 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "uname -a",
+	"postCreateCommand": "touch filename.txt",
 
 	// Configure tool-specific properties.
-	 "customizations": {
+	"customizations": {
 		"vscode" : {
 			"extensions" : [
 				"dart-code.dart-code",
