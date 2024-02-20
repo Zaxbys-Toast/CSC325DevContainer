@@ -12,7 +12,7 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	//"postCreateCommand": "",
+	"postCreateCommand": "flutter config --android-sdk $ANDROID_SDK_ROOT",
 
 	// Configure tool-specific properties.
 	"customizations": {
