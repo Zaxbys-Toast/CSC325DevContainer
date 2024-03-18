@@ -1,0 +1,24 @@
+on:
+  push:
+    branches: main
+jobs:
+  build:
+    runs-on: Ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: install-dependencies
+        working-directory: ./app
+        run: flutter pub get
+
+      - name: run tests
+        working-directory: ./app
+        run: flutter test
+
+      - name: build flutter web
+        working-directory: ./app
+        run: flutter build web
