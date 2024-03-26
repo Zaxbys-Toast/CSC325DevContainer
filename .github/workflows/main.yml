@@ -1,9 +1,13 @@
+name: Main Workflow
+
 on:
   push:
-    branches: main
+    branches:
+      - main
+
 jobs:
   build:
-    runs-on: Ubuntu-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -23,9 +27,5 @@ jobs:
         working-directory: ./app
         run: flutter build web
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_tokens: ${{ secerets.GITHUB_TOKEN }}
-          publish_dir: ./app/build/web
-        
+      - name: Include Deploy Step
+        uses: ./.github/workflows/deploy.yml
