@@ -19,6 +19,7 @@ jobs:
         working-directory: ./app
         run: flutter pub get
 
+        
       - name: run tests
         working-directory: ./app
         run: flutter test
