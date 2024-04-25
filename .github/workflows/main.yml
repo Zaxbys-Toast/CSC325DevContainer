@@ -27,6 +27,3 @@ jobs:
       - name: build flutter web
         working-directory: ./app
         run: flutter build web
-
-      - name: Include Deploy Step
-        uses: ./.github/workflows/deploy.yml
