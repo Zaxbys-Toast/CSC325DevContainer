@@ -46,7 +46,7 @@ RUN $ANDROID_SDK_ROOT/tools/bin/sdkmanager --install "cmdline-tools;latest"
 ENV PATH "$PATH:$ANDROID_SDK_ROOT/platform-tools"
 
 # Download and install Flutter SDK
-RUN wget -O https://storage.googleapis.com/flutter_infra_release/releases/beta/linux/flutter_linux_3.22.0-0.3.pre-beta.tar.xz && \
+RUN wget -O flutter.tar.xz https://storage.googleapis.com/flutter_infra_release/releases/beta/linux/flutter_linux_3.22.0-0.3.pre-beta.tar.xz && \
     tar xf flutter.tar.xz -C /home/developer && \
     chown -R $USER_UID:$USER_GID /home/developer/flutter && \
     rm flutter.tar.xz
