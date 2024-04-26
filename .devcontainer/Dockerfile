@@ -3,7 +3,6 @@ FROM mcr.microsoft.com/devcontainers/base:ubuntu
 ARG USERNAME=vscode
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
-WORKDIR /home/developer
 
 # Install necessary packages
 RUN apt-get update && \
@@ -46,11 +45,14 @@ RUN $ANDROID_SDK_ROOT/tools/bin/sdkmanager --install "cmdline-tools;latest"
 
 ENV PATH "$PATH:$ANDROID_SDK_ROOT/platform-tools"
 
-# Download the Flutter SDK
-RUN git clone https://github.com/flutter/flutter.git /home/developer/flutter && \
-    chown -R $USER_UID:$USER_GID /home/developer/flutter
+# Download and install Flutter SDK
+RUN wget -O flutter.tar.xz https://storage.googleapis.com/flutter_infra_release/releases/beta/linux/flutter_linux_3.22.0-0.3.pre-beta.tar.xz && \
+    tar xf flutter.tar.xz -C /home/developer && \
+    chown -R $USER_UID:$USER_GID /home/developer/flutter && \
+    rm flutter.tar.xz
 
+# Add Flutter binary to PATH
 ENV PATH "$PATH:/home/developer/flutter/bin"
 
+# Set up non-root privilege
 USER $USERNAME
-
